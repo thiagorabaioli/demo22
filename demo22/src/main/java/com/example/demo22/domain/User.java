@@ -26,12 +26,11 @@ public class User {
 
     }
 
-    public User(String email, String name, Long id, String password, Set<Role> roles) {
+    public User(String email, String name, Long id, String password ){
         this.email = email;
         this.name = name;
         this.id = id;
         this.password = password;
-        this.roles = roles;
     }
 
     public Long getId() {
