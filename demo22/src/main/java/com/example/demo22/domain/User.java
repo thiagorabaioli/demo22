@@ -2,7 +2,9 @@ package com.example.demo22.domain;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -16,13 +18,20 @@ public class User {
     private String email;
     private String password;
 
-    public User(){}
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="tb_user_role", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
+    private Set<Role> roles = new HashSet<>();
 
-    public User(String email, String name, Long id, String password) {
+    public User(){
+
+    }
+
+    public User(String email, String name, Long id, String password, Set<Role> roles) {
         this.email = email;
         this.name = name;
         this.id = id;
         this.password = password;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -55,6 +64,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
