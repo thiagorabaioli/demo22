@@ -17,6 +17,8 @@ public class Reclamante {
     private Long id;
     private String name;
     private String contacto;
+
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant instantReclamado;
 
     @OneToMany(mappedBy = "reclamante")

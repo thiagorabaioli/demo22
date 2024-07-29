@@ -15,11 +15,14 @@ public class ItemPerdido {
     private String quemEncontrou;
     private String localEncontrado;
     private String descricao;
+
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant instanteEncontrado;
 
     @ManyToOne
     @JoinColumn(name="reclamante_id")
     private Reclamante reclamante;
+
 
     public ItemPerdido() {}
 
@@ -79,6 +82,7 @@ public class ItemPerdido {
     public void setReclamante(Reclamante reclamante) {
         this.reclamante = reclamante;
     }
+
 
     @Override
     public boolean equals(Object o) {
